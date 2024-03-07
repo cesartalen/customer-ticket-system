@@ -4,8 +4,6 @@ import { AppError } from '../utils/appError.js'
 import { catchAsync } from '../utils/catchAsync.js'
 import { User } from '../models/userSchema.js'
 
-const { sign, decode, verify } = jsonwebtoken
-
 export const createUser = catchAsync(async (req, res, next) => {
   const { name, email, password } = req.body
 
