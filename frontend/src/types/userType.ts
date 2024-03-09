@@ -1,8 +1,14 @@
-export type CreateUserType = {
+export type CreateUserFormType = {
   name: string;
   email: string;
   password: string;
   passwordConfirm: string;
+}
+
+export type CreateUserType = {
+  name: string;
+  email: string;
+  password: string;
 }
 
 export type LoginUserType = {

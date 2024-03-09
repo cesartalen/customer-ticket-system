@@ -1,10 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { CreateUserType } from '../types/userType'
+import { CreateUserFormType, CreateUserType } from '../types/userType'
 import { Link } from 'react-router-dom'
+import { registerUser } from '../services/apiUser'
+import { useUserState } from '../store/userState'
+import { useStore } from 'zustand'
 
 export const RegisterForm = () => {
+  const userState = useStore(useUserState)
   const [error, setError] = useState('')
-  const [formValues, setFormValues] = useState<CreateUserType>({
+  const [formValues, setFormValues] = useState<CreateUserFormType>({
     name: '',
     email: '',
     password: '',
@@ -22,6 +26,13 @@ export const RegisterForm = () => {
     
     if(formValues.password !== formValues.passwordConfirm) {
       setError('Passwords do not match!')
+    } else {
+      const registerData : CreateUserType = {
+        email: formValues.email,
+        name: formValues.name,
+        password: formValues.password,
+      }
+      registerUser(registerData, userState)
     }
 
   }
