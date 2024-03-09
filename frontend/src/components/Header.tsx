@@ -1,15 +1,20 @@
-import { AiFillHome, AiOutlineLogin, AiOutlineLogout, AiOutlineUserAdd} from 'react-icons/ai'
+import { AiFillHome, AiOutlineLogin, AiOutlineLogout, AiOutlineUserAdd, AiFillQuestionCircle} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
 export const Header = () => {
   return (
     <>
-      <header>
+      <div className='header'>
         <div>
-          <Link to='/'>Support <AiFillHome/></Link>
+          <Link to='/'>Support<AiFillHome/></Link>
         </div>
         <div>
           <ul>
+            <li>
+              <Link to='/Faq'>
+                <AiFillQuestionCircle/> FAQ
+              </Link>
+            </li>
             <li>
               <Link to='/Login'>
                 <AiOutlineLogin/> Login
@@ -22,7 +27,7 @@ export const Header = () => {
             </li>
           </ul>
         </div>
-      </header>
+      </div>
     </>
   )
 }
