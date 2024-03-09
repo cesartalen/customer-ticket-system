@@ -5,8 +5,14 @@ import { useUserState } from '../store/userState'
 
 
 export const Header = () => {
-  const userState = useStore(useUserState)
-  console.log(userState.status)
+  const userState : any = useStore(useUserState)
+  
+  const handleLogOut = () => {
+    userState.UpdateName('')
+    userState.UpdateToken('')
+    userState.UpdateStatus(false)
+  }
+
   return (
     <>
       <div className='header'>
@@ -21,8 +27,8 @@ export const Header = () => {
               </Link>
             </li>
             {userState.status ? (
-            <li>
-              <Link to='/Login'>
+            <li onClick={handleLogOut}>
+              <Link to='/'>
                 <AiOutlineLogout/> Logout
               </Link>
             </li>

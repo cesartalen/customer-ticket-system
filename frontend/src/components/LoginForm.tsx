@@ -1,8 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { LoginUserType } from '../types/userType'
 import { Link } from 'react-router-dom'
+import { loginUser } from '../services/apiUser'
+import { useUserState } from '../store/userState'
+import { useStore } from 'zustand'
+
 
 export const LoginForm = () => {
+  const userState = useStore(useUserState)
   const [error, setError] = useState('')
   const [formValues, setFormValues] = useState<LoginUserType>({
     name: '',
@@ -17,6 +22,7 @@ export const LoginForm = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
+    loginUser(formValues, userState)
   }
 
   return ( 
