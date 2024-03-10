@@ -18,19 +18,21 @@ export const loginUser = (formValues: LoginUserType, userState: any) => {
   })
 }
 
-export const registerUser = (formValues: CreateUserType, userState: any) => {  
-  axios.post(USER_REGISTER_API, {
-    name: formValues.name,
-    email: formValues.email,
-    password: formValues.password,
-  }).then(function (response) {
+export const registerUser = async (formValues: CreateUserType, userState: any) => {
+  try {
+    const response = await axios.post(USER_REGISTER_API, {
+      name: formValues.name,
+      email: formValues.email,
+      password: formValues.password,
+    });
     if(response.status === 201) {
-      return response.data.status
+      return response.data.status;
     }
-  }).catch(function (error) {
-    // Handle errors, present to user correctly..
-    console.log(error)
-  })
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+  return null; 
 }
 
 export const getToken = () => {

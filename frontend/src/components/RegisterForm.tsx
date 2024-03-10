@@ -8,6 +8,7 @@ import { useStore } from 'zustand'
 export const RegisterForm = () => {
   const userState = useStore(useUserState)
   const [error, setError] = useState('')
+  const [message, setMessage] = useState('');
   const [formValues, setFormValues] = useState<CreateUserFormType>({
     name: '',
     email: '',
@@ -20,7 +21,7 @@ export const RegisterForm = () => {
     setFormValues({ ...formValues, [name]: value })
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setError('')
     
@@ -32,7 +33,14 @@ export const RegisterForm = () => {
         name: formValues.name,
         password: formValues.password,
       }
-      registerUser(registerData, userState)
+      try {
+        const status = await registerUser(registerData, userState);
+        if (status !== null) {
+          setMessage('Account created, you can now login!');
+        }
+      } catch (error) {
+        setError('Registration failed. Please try again.');
+      }
     }
 
   }
@@ -47,6 +55,7 @@ export const RegisterForm = () => {
         <div className='form-content'>
           <form onSubmit={handleSubmit}>
             {error && <div className='error-message'>{error}</div>}
+            {message && <div className='error-message'>{message}</div>}
             <input onChange={handleChange} type="text" id="name" name="name" placeholder="Enter your username" value={formValues.name} required></input>
             <input onChange={handleChange} type="text" id="email" name="email" placeholder="Enter your email" value={formValues.email} required></input>
             <input onChange={handleChange} type="password" id="password" name="password" placeholder="Enter your password" value={formValues.password} required></input>
