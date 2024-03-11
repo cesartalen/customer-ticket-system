@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { TICKET_CREATE_API } from '../statics/apiUrls'
 import { getToken } from './apiUser'
+import { CreateTicketFormType } from '../types/ticketType'
 
-export const createTicket = async (userState: any) => {
+export const createTicket = async (formValues: CreateTicketFormType, userState: any) => {
   try {
     const token = getToken(userState)
     if(!token == false) {
@@ -12,8 +13,8 @@ export const createTicket = async (userState: any) => {
       }
 
       const ticketData = {
-        name: 'test',
-        category: 'testCat',
+        name: formValues.name,
+        category: formValues.category,
         user: userState.id,
       }
       await axios.post(TICKET_CREATE_API, ticketData, { headers })
