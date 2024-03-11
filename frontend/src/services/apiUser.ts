@@ -14,7 +14,7 @@ export const loginUser = (formValues: LoginUserType, userState: any) => {
     }
   }).catch(function (error) {
     // Handle errors, present to user correctly..
-    console.log(error)
+    console.error(error)
   })
 }
 
@@ -28,9 +28,12 @@ export const registerUser = async (formValues: CreateUserType, userState: any) =
     if(response.status === 201) {
       return response.data.status;
     }
-  } catch (error) {
-    console.log(error);
-    throw error;
+  } catch (error : any) {
+    if(error.response.status !== null) {
+      return error.response.status
+    } else {
+      console.error(error)
+    }
   }
   return null; 
 }

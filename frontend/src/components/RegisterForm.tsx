@@ -24,6 +24,7 @@ export const RegisterForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setError('')
+    setMessage('')
     
     if(formValues.password !== formValues.passwordConfirm) {
       setError('Passwords do not match!')
@@ -35,11 +36,19 @@ export const RegisterForm = () => {
       }
       try {
         const status = await registerUser(registerData, userState);
-        if (status !== null) {
-          setMessage('Account created, you can now login!');
+        switch(status) {
+          case true:
+            setMessage('Account created, you can now login!');
+            break;
+          case 400:
+            setError('Account already exists!');
+            break;
+          case 401:
+            setError('Registration failed, please try again!')
+            break;
         }
       } catch (error) {
-        setError('Registration failed. Please try again.');
+        console.error(error)
       }
     }
 
