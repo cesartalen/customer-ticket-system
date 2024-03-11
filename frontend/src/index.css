@@ -151,6 +151,11 @@ ul {
   margin-bottom: 10px;
 }
 
+.status-message {
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+
 .footer {
   background-color: var(--black-color);
   color: var(--white-color);

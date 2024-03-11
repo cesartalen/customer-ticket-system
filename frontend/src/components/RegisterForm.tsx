@@ -64,7 +64,7 @@ export const RegisterForm = () => {
         <div className='form-content'>
           <form onSubmit={handleSubmit}>
             {error && <div className='error-message'>{error}</div>}
-            {message && <div className='error-message'>{message}</div>}
+            {message && <div className='status-message'>{message}</div>}
             <input onChange={handleChange} type="text" id="name" name="name" placeholder="Enter your username" value={formValues.name} required></input>
             <input onChange={handleChange} type="text" id="email" name="email" placeholder="Enter your email" value={formValues.email} required></input>
             <input onChange={handleChange} type="password" id="password" name="password" placeholder="Enter your password" value={formValues.password} required></input>
