@@ -3,7 +3,9 @@ import mongoose from 'mongoose'
 const ticketSchema = new mongoose.Schema(
   {
     user: {
-      type: mongoose.schema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: [true, 'ticket needs to know the user'],
     },
     name: {
       type: String,
@@ -23,3 +25,5 @@ const ticketSchema = new mongoose.Schema(
     timestamps: true,
   }
 )
+
+export const Ticket = mongoose.model('Ticket', ticketSchema)
