@@ -10,7 +10,6 @@ export const protect = catchAsync(async (req, res, next) => {
       .replace(/^\s+|\s+$/gi, '')
     const decodedToken = jsonwebtoken.verify(token, process.env.JWT_SECRET)
 
-    // Getting user for further authentication, excluding password for security
     req.user = await User.findById(decodedToken.id).select('-password')
 
     next()
