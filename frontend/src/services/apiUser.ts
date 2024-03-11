@@ -10,6 +10,7 @@ export const loginUser = (formValues: LoginUserType, userState: any) => {
     if(response.status === 200) {
       userState.UpdateName(response.data.name)
       userState.UpdateToken(response.data.token)
+      userState.UpdateId(response.data.id)
       userState.UpdateStatus(true)
     }
   }).catch(function (error) {
@@ -38,7 +39,10 @@ export const registerUser = async (formValues: CreateUserType, userState: any) =
   return null; 
 }
 
-export const getToken = () => {
-  const token = localStorage.getItem("token")
-  return token
+export const getToken = (userState: { token: any }) => {
+  try {
+    return userState.token
+  } catch {
+    return false
+  }
 }
