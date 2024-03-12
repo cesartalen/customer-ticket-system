@@ -19,6 +19,11 @@ export const createTicket = catchAsync(async (req, res, next) => {
   res.status(201).json(ticket)
 })
 
+export const getTickets = catchAsync(async (req, res) => {
+  const userTickets = await Ticket.find({ user: req.user.id })
+  res.status(200).json(userTickets)
+})
+
 export const getCategories = catchAsync(async (req, res) => {
   res.json(categories)
 })

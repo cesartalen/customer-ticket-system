@@ -6,3 +6,8 @@ export const router = express.Router()
 
 router.post('/createTicket', protect, ticketController.createTicket)
 router.get('/categories', ticketController.getCategories)
+
+router.get('/tickets', protect, ticketController.getTickets)
+// router.get('/ticket/:id', protect, ticketController.getTicket)
+
+// router.delete('/ticket/:id', protect, ticketController.getTicket)
