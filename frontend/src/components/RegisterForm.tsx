@@ -1,12 +1,20 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { CreateUserFormType, CreateUserType } from '../types/userType'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { registerUser } from '../services/apiUser'
 import { useUserState } from '../store/userState'
 import { useStore } from 'zustand'
 
 export const RegisterForm = () => {
-  const userState = useStore(useUserState)
+  const navigate = useNavigate()
+  const userState : any = useStore(useUserState)
+
+  useEffect(() => {
+    if (userState.status === true) {
+      navigate('/');
+    }
+  }, [userState.status]);
+
   const [error, setError] = useState('')
   const [message, setMessage] = useState('');
   const [formValues, setFormValues] = useState<CreateUserFormType>({
