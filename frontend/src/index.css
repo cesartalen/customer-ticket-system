@@ -190,6 +190,10 @@ ul {
   justify-content: space-between;
 }
 
+.home-options-logged-in div {
+  margin-bottom: 20px;
+}
+
 .home-options div {
   flex: 0 0 33%;
 }

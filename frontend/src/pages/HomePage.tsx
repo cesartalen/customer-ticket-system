@@ -1,19 +1,21 @@
 import { Link } from 'react-router-dom'
+import NotLoggedIn from './Home/NotLoggedIn'
+import LoggedIn from './Home/LoggedIn'
+import { useUserState } from '../store/userState'
+import { useStore } from 'zustand'
 
 export default function HomePage() {
+  const userState : any = useStore(useUserState)
+
   return(
     <>
-      <div className='home-contents'>
-        <div className='home-labels'>
-          <a className='home-title'>Login to create a ticket</a>
-          <a className='home-subtitle'>Read the FAQ before submitting a ticket</a>
-        </div>
-        <div className='home-options'>
-          <div><Link to='/login'><button>Login</button></Link></div>
-          <div><Link to='/register'><button>Register</button></Link></div>
-          <div><Link to='/faq'><button>FAQ</button></Link></div>
-        </div>
-      </div>
+      {userState.status ? 
+        (
+          <LoggedIn/>
+        ) : (
+          <NotLoggedIn/>
+        )
+      }
     </>
   )
 }
