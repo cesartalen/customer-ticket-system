@@ -2,6 +2,7 @@ import { AppError } from '../utils/appError.js'
 import { catchAsync } from '../utils/catchAsync.js'
 import { User } from '../models/userSchema.js'
 import { Ticket } from '../models/ticketSchema.js'
+import { categories } from '../config/categories.js'
 
 export const createTicket = catchAsync(async (req, res, next) => {
   const { name, category } = req.body
@@ -16,4 +17,8 @@ export const createTicket = catchAsync(async (req, res, next) => {
   })
 
   res.status(201).json(ticket)
+})
+
+export const getCategories = catchAsync(async (req, res) => {
+  res.json(categories)
 })

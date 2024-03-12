@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { TICKET_CREATE_API } from '../statics/apiUrls'
+import { TICKET_CREATE_API, TICKET_GET_CATEGORIES } from '../statics/apiUrls'
 import { getToken } from './apiUser'
 import { CreateTicketFormType } from '../types/ticketType'
 
@@ -22,4 +22,9 @@ export const createTicket = async (formValues: CreateTicketFormType, userState: 
   } catch (error) {
     console.error(error)
   }
+}
+
+export const getCategories = async () => {
+  const response = await axios.get<string[]>(TICKET_GET_CATEGORIES);
+  return response
 }

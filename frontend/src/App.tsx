@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import FAQPage from './pages/FAQPage'
 import { AppLayout } from './layouts/AppLayout'
+import CreateTicketPage from './pages/CreateTicketPage'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterPage/>,
+      },
+      {
+        path: "/createTicket",
+        element: <CreateTicketPage/>,
       },
     ],
   }

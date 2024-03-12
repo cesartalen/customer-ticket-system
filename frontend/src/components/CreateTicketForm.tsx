@@ -1,4 +1,24 @@
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { getCategories } from '../services/apiTicket'
+
 export const CreateTicketForm = () => {
+  const [categories, setCategories] = useState<string[]>([])
+  const [error, setError] = useState('')
+
+  const fetchCategories = async () => {
+    try {
+      const response = await getCategories()
+      setCategories((await response).data)
+    } catch {
+      setError('Could not fetch categories from the server')
+    }
+  }
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   return(
     <>
       <div className='submit-form'>
@@ -8,7 +28,12 @@ export const CreateTicketForm = () => {
           </div>
         <div className='form-content'>
           <form>
-            <select></select>
+            {error && <div className='error-message'>{error}</div>}
+            <select>
+              {categories.map(category => (
+               <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
             <input></input>
           </form>
         </div>

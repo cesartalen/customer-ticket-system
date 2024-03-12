@@ -18,7 +18,8 @@ const ticketSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: [true, ''],
+      enum: ['Account', 'Order', 'Other'],
+      required: [true, 'You need to select a category'],
     },
   },
   {
