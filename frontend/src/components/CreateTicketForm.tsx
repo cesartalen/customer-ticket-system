@@ -1,15 +1,43 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { getCategories } from '../services/apiTicket'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { createTicket, getCategories } from '../services/apiTicket'
+import { CreateTicketFormType } from '../types/ticketType'
+import { useStore } from 'zustand'
+import { useUserState } from '../store/userState'
 
 export const CreateTicketForm = () => {
+  const userState : any = useStore(useUserState)
   const [categories, setCategories] = useState<string[]>([])
   const [error, setError] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [name, setName] = useState('')
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value)
+  }
+
+  const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCategory(e.target.value)
+  }
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    const data : CreateTicketFormType = {
+      name: name,
+      category: selectedCategory,
+    }
+
+    createTicket(data, userState)
+  }
 
   const fetchCategories = async () => {
     try {
       const response = await getCategories()
       setCategories((await response).data)
+      
+      // Setting the first category as selected by default
+      if(response.data.length > 0) {
+        setSelectedCategory(response.data[0])
+      }
     } catch {
       setError('Could not fetch categories from the server')
     }
@@ -27,14 +55,15 @@ export const CreateTicketForm = () => {
             <a className='form-subtitle'>Create a new ticket to get help with your issue</a>
           </div>
         <div className='form-content'>
-          <form>
+          <form onSubmit={handleSubmit}>
             {error && <div className='error-message'>{error}</div>}
-            <select>
+            <select value={selectedCategory} onChange={handleCategoryChange} required>
               {categories.map(category => (
                <option key={category} value={category}>{category}</option>
               ))}
             </select>
-            <input></input>
+            <input type='text' value={name} onChange={handleNameChange} placeholder='Enter ticket name' required></input>
+            <button>Create</button>
           </form>
         </div>
       </div>
