@@ -24,6 +24,12 @@ export const getTickets = catchAsync(async (req, res) => {
   res.status(200).json(userTickets)
 })
 
+export const getTicket = catchAsync(async (req, res) => {
+  const ticketId = req.params.id
+  const ticket = await Ticket.findById(ticketId)
+  res.status(200).json(ticket)
+})
+
 export const getCategories = catchAsync(async (req, res) => {
   res.json(categories)
 })
