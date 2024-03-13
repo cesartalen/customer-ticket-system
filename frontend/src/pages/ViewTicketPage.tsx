@@ -3,7 +3,7 @@ import { getReplies, getSpecificTicket } from '../services/apiTicket'
 import { useUserState } from '../store/userState'
 import { useStore } from 'zustand'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { FetchTicketType } from '../types/ticketType'
+import { FetchTicketType, TicketReplyType } from '../types/ticketType'
 
 export default function ViewTicketPage() {
   const userState : any = useStore(useUserState)
@@ -11,7 +11,7 @@ export default function ViewTicketPage() {
   const [ticket, setTicket] = useState<FetchTicketType>()
   const [error, setError] = useState('')
   const [reply, setReply] = useState('')
-  const [replies, setReplies] = useState([])
+  const [replies, setReplies] = useState<TicketReplyType[]>([])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setReply(e.target.value)

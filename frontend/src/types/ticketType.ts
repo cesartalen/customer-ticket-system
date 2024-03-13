@@ -13,3 +13,14 @@ export type FetchTicketType = {
   updatedAt: string;
   user: string;
 }
+
+export type TicketReplyType = {
+  _id: string;
+  user: string;
+  isAdmin: boolean;
+  ticket: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
