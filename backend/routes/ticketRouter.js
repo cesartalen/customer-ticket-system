@@ -8,6 +8,6 @@ router.post('/createTicket', protect, ticketController.createTicket)
 router.get('/categories', ticketController.getCategories)
 
 router.get('/tickets', protect, ticketController.getTickets)
-router.get('/ticket/:id', protect, ticketController.getTicket)
+router.get('/tickets/:id', protect, ticketController.getTicket)
 
 // router.delete('/ticket/:id', protect, ticketController.getTicket)
