@@ -29,8 +29,11 @@ export const LoginForm = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-
-    loginUser(formValues, userState)
+    try {
+      loginUser(formValues, userState)
+    } catch {
+      setError('Could not sign in')
+    }
   }
 
   return ( 
