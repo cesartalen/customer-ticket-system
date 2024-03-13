@@ -8,6 +8,7 @@ export const CreateTicketForm = () => {
   const userState : any = useStore(useUserState)
   const [categories, setCategories] = useState<string[]>([])
   const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [name, setName] = useState('')
 
@@ -27,6 +28,8 @@ export const CreateTicketForm = () => {
     }
 
     createTicket(data, userState)
+    setMessage('Ticket submitted')
+    setName('')
   }
 
   const fetchCategories = async () => {
@@ -57,6 +60,7 @@ export const CreateTicketForm = () => {
         <div className='form-content'>
           <form onSubmit={handleSubmit}>
             {error && <div className='error-message'>{error}</div>}
+            {message && <div className='status-message'>{message}</div>}
             <select value={selectedCategory} onChange={handleCategoryChange} required>
               {categories.map(category => (
                <option key={category} value={category}>{category}</option>
