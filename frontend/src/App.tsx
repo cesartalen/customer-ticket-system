@@ -5,6 +5,7 @@ import RegisterPage from './pages/RegisterPage'
 import FAQPage from './pages/FAQPage'
 import { AppLayout } from './layouts/AppLayout'
 import CreateTicketPage from './pages/CreateTicketPage'
+import ViewTicketPage from './pages/ViewTicketPage'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/createTicket",
         element: <CreateTicketPage/>,
+      },
+      {
+        path: "/tickets/:id",
+        element: <ViewTicketPage/>,
       },
     ],
   }
