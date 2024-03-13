@@ -12,7 +12,6 @@ export const TicketList = () => {
     try {
       const response = await getTickets(userState)
       if(response) {
-        console.log(response.data)
         setTickets(response.data)
       } else {
         setMessage('There are no tickets')
