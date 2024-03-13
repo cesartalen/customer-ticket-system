@@ -10,7 +10,7 @@ export default function LoggedIn() {
           <a className='home-subtitle'>Create a new ticket, or view your active tickets</a>
         </div>
         <div className='home-options-logged-in'>
-        <div><Link to=''><button>Create a new Ticket</button></Link></div>
+        <div><Link to='createTicket'><button>Create a new Ticket</button></Link></div>
         <TicketList/>
         </div>
       </div>
