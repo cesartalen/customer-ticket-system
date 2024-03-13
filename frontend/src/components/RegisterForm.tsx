@@ -43,7 +43,7 @@ export const RegisterForm = () => {
         password: formValues.password,
       }
       try {
-        const status = await registerUser(registerData, userState);
+        const status = await registerUser(registerData);
         switch(status) {
           case true:
             setMessage('Account created, you can now login!');

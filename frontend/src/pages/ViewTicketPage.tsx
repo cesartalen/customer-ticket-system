@@ -37,7 +37,6 @@ export default function ViewTicketPage() {
       if(id) {
         const response = await getReplies(id, userState)
         if(response) {
-          console.log(response.data)
           setReplies(response.data)
         } else {
           setError('Could not fetch replies')

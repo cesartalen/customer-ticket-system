@@ -1,6 +1,5 @@
 import { create } from 'zustand'
-import {ThisUser, UpdateThisUser} from '../types/userType'
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 export const useUserState = create(
   persist(

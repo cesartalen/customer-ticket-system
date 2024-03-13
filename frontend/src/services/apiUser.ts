@@ -19,7 +19,7 @@ export const loginUser = (formValues: LoginUserType, userState: any) => {
   })
 }
 
-export const registerUser = async (formValues: CreateUserType, userState: any) => {
+export const registerUser = async (formValues: CreateUserType) => {
   try {
     const response = await axios.post(USER_REGISTER_API, {
       name: formValues.name,

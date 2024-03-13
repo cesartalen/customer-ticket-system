@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import NotLoggedIn from './Home/NotLoggedIn'
 import LoggedIn from './Home/LoggedIn'
 import { useUserState } from '../store/userState'
