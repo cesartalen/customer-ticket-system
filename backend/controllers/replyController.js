@@ -33,3 +33,23 @@ export const createReply = catchAsync(async (req, res, next) => {
   })
   res.status(200).json(reply)
 })
+
+export const getReplies = catchAsync(async (req, res, next) => {
+  const ticket = await Ticket.findById(req.params.id)
+  const user = await User.findById(req.user.id)
+  let admin = false
+
+  if (user.isAdmin.toString() == 'true') {
+    admin = true
+  }
+
+  if (admin == false) {
+    if (ticket.user.toString() !== req.user.id) {
+      return next(new AppError('Not authorized'), 401)
+    }
+  }
+
+  const replies = await Reply.find({ ticket })
+
+  res.status(200).json(replies)
+})
