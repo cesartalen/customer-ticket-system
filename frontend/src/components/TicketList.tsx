@@ -2,6 +2,7 @@ import { useStore } from 'zustand'
 import { useUserState } from '../store/userState'
 import { useEffect, useState } from 'react'
 import { getTickets } from '../services/apiTicket'
+import { Link } from 'react-router-dom'
 
 export const TicketList = () => {
   const userState : any = useStore(useUserState)
@@ -31,7 +32,10 @@ export const TicketList = () => {
       <div>
         {tickets.map(ticket => (
           <div key={ticket._id}>
-            {ticket.name} : {ticket.category}</div>
+            <Link to={`/tickets/${ticket._id}`}>
+              {ticket.name} : {ticket.category}
+            </Link>
+          </div>
         ))}
       </div>
     </>
