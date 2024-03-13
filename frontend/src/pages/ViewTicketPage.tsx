@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { getReplies, getSpecificTicket } from '../services/apiTicket'
+import { createReply, getReplies, getSpecificTicket } from '../services/apiTicket'
 import { useUserState } from '../store/userState'
 import { useStore } from 'zustand'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { FetchTicketType, TicketReplyType } from '../types/ticketType'
 
 export default function ViewTicketPage() {
@@ -15,6 +15,16 @@ export default function ViewTicketPage() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setReply(e.target.value)
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    if(id) {
+      await createReply(id, reply, userState).then(() => {
+        setReply('')
+        fetchReplies()
+      })
+    }
   }
 
   const fetchTicket = async () => {
@@ -66,8 +76,8 @@ export default function ViewTicketPage() {
                   <a className='form-subtitle'>{ticket.category}</a>
                 </div>
                 <div className='form-content'>
-                  <input type='text' name='message' placeholder='Enter your reply' onChange={handleChange}></input>
-                  <button>Submit</button>
+                  <input type='text' name='message' value={reply} placeholder='Enter your reply' onChange={handleChange}></input>
+                  <button onClick={handleSubmit}>Submit</button>
                 </div>
               </form>
             </div>

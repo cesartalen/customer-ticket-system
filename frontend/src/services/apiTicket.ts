@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { TICKET_CREATE_API, TICKET_GET_CATEGORIES, TICKET_GET_REPLIES, TICKET_GET_SPECIFIC_TICKET, TICKET_GET_TICKETS } from '../statics/apiUrls'
+import { TICKET_CREATE_API, TICKET_CREATE_REPLIES, TICKET_GET_CATEGORIES, TICKET_GET_REPLIES, TICKET_GET_SPECIFIC_TICKET, TICKET_GET_TICKETS } from '../statics/apiUrls'
 import { getToken } from './apiUser'
 import { CreateTicketFormType } from '../types/ticketType'
 
@@ -77,5 +77,23 @@ export const getReplies = async (id: string, userState: any) => {
     }
   } catch {
     return false
+  }
+}
+
+export const createReply = async (id: string, message: string, userState: any) => {
+  try {
+    const token = getToken(userState)
+    if(!token == false) {
+      const headers = {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      }
+
+    await axios.post(TICKET_CREATE_REPLIES(id), { message: message }, { headers }).then(() => {
+      return true
+    })
+    }
+  } catch (error) {
+    console.error(error)
   }
 }
