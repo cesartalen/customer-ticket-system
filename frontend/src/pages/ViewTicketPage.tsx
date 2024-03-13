@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { getSpecificTicket } from '../services/apiTicket'
+import { getReplies, getSpecificTicket } from '../services/apiTicket'
 import { useUserState } from '../store/userState'
 import { useStore } from 'zustand'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -11,6 +11,7 @@ export default function ViewTicketPage() {
   const [ticket, setTicket] = useState<FetchTicketType>()
   const [error, setError] = useState('')
   const [reply, setReply] = useState('')
+  const [replies, setReplies] = useState([])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setReply(e.target.value)
@@ -31,8 +32,25 @@ export default function ViewTicketPage() {
     }
   }
 
+  const fetchReplies = async () => {
+    try {
+      if(id) {
+        const response = await getReplies(id, userState)
+        if(response) {
+          console.log(response.data)
+          setReplies(response.data)
+        } else {
+          setError('Could not fetch replies')
+        }
+      }
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     fetchTicket();
+    fetchReplies();
   }, []);
 
   return (
@@ -56,7 +74,22 @@ export default function ViewTicketPage() {
             </div>
           </div>
           <div className='ticket-messages'>
-
+            {replies.map(rep => (
+              <>
+                <div className='ticket-reply'>
+                  <a className='ticket-responder'>{rep.isAdmin ? (
+                   <>
+                      Admin
+                   </> 
+                  ) : (
+                    <>
+                      User
+                    </>
+                  )}: </a>
+                  <a>{rep.message}</a>
+                </div>
+              </>
+            ))}
           </div>
         </div>
 

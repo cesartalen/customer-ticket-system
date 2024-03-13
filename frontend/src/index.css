@@ -225,6 +225,28 @@ ul {
   width: 100%;
 }
 
+.ticket-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  max-width: 500px;
+}
+
+.ticket-reply {
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid var(--second-black-color);
+  border-radius: 5px;
+  background-color: var(--second-white-color);
+  width: 100%;
+}
+
+.ticket-responder {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
 @media screen and (max-width: 700px) {
   .home-options div {
     flex: 0 0 100%;
