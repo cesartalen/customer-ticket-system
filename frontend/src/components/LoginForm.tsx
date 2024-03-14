@@ -40,8 +40,8 @@ export const LoginForm = () => {
     <>
       <div className='submit-form'>
         <div className='form-label'>
-          <a className='form-title'>Login</a>
-          <a className='form-subtitle'>Access your account</a>
+          <a className='g-title'>Login</a>
+          <a className='g-subtitle'>Access your account</a>
         </div>
         <div className='form-content'>
           <form onSubmit={handleSubmit}>

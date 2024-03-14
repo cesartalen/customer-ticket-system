@@ -6,8 +6,8 @@ export default function LoggedIn() {
     <>
       <div className='home-contents'>
         <div className='home-labels'>
-          <a className='home-title'>Manage tickets</a>
-          <a className='home-subtitle'>Create a new ticket, or view your active tickets</a>
+          <a className='g-title'>Manage tickets</a>
+          <a className='g-subtitle'>Create a new ticket, or view your active tickets</a>
         </div>
         <div className='home-options-logged-in'>
         <div><Link to='createTicket'><button>Create a new Ticket</button></Link></div>

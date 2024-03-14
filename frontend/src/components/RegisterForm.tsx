@@ -66,8 +66,8 @@ export const RegisterForm = () => {
     <>
       <div className='submit-form'>
         <div className='form-label'>
-            <a className='form-title'>Registration</a>
-            <a className='form-subtitle'>Create an account</a>
+            <a className='g-title'>Registration</a>
+            <a className='g-subtitle'>Create an account</a>
         </div>
         <div className='form-content'>
           <form onSubmit={handleSubmit}>

@@ -89,8 +89,8 @@ export default function ViewTicketPage() {
                 <div className='form-label'>
                 {ticket.status ? (
                   <>
-                    <a className='form-title'>{ticket.name}</a>
-                    <a className='form-subtitle'>{ticket.category}</a>                  
+                    <a className='g-title'>{ticket.name}</a>
+                    <a className='g-subtitle'>{ticket.category}</a>                  
                     <div className='form-content'>
                       <input type='text' name='message' value={reply} placeholder='Enter your reply' onChange={handleChange}></input>
                       <button onClick={handleSubmit}>Submit</button>
@@ -98,8 +98,8 @@ export default function ViewTicketPage() {
                   </>
                 ) : (
                   <>
-                    <a className='form-title ticket-closed'>{ticket.name}</a>
-                    <a className='form-subtitle ticket-closed'>{ticket.category}</a>                      
+                    <a className='g-title ticket-closed'>{ticket.name}</a>
+                    <a className='g-subtitle ticket-closed'>{ticket.category}</a>                      
                   </>
                   )}
                   </div>

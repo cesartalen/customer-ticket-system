@@ -108,16 +108,6 @@ ul {
   margin-top: 20px;
 }
 
-.form-title {
-  font-size: 24px;
-}
-
-.form-subtitle {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--main-color-lighter)
-}
-
 .form-content input, textarea, select {
   width: 100%;
   margin-bottom: 16px;
@@ -207,11 +197,11 @@ ul {
   margin-top: 40px;
 }
 
-.home-title {
+.g-title {
   font-size:24px;
 }
 
-.home-subtitle {
+.g-subtitle {
   font-size: 20px;
   font-weight: bold;
   color: var(--main-color-lighter);

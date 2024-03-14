@@ -5,8 +5,8 @@ export default function NotLoggedIn() {
     <>
       <div className='home-contents'>
         <div className='home-labels'>
-          <a className='home-title'>Login to create a ticket</a>
-          <a className='home-subtitle'>Read the FAQ before submitting a ticket</a>
+          <a className='g-title'>Login to create a ticket</a>
+          <a className='g-subtitle'>Read the FAQ before submitting a ticket</a>
         </div>
         <div className='home-options'>
           <div><Link to='/login'><button>Login</button></Link></div>
