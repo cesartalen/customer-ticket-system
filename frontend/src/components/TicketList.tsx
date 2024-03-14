@@ -33,7 +33,11 @@ export const TicketList = () => {
         {tickets.map(ticket => (
           <div key={ticket._id}>
             <Link to={`/tickets/${ticket._id}`}>
-              {ticket.name} : {ticket.category}
+              {ticket.status ? (
+                <a>{ticket.name} : {ticket.category}</a>
+                ) : (
+                <a className='ticket-closed'>{ticket.name} : {ticket.category}</a>
+              )}
             </Link>
           </div>
         ))}
