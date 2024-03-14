@@ -19,6 +19,13 @@ export const createReply = catchAsync(async (req, res, next) => {
     admin = true
   }
 
+  if (ticket.status == false) {
+    return next(
+      new AppError('Ticket is closed, further messages can not be created'),
+      403
+    )
+  }
+
   if (admin == false) {
     if (ticket.user.toString() !== req.user.id) {
       return next(new AppError('Not authorized'), 401)
