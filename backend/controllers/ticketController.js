@@ -33,3 +33,10 @@ export const getTicket = catchAsync(async (req, res) => {
 export const getCategories = catchAsync(async (req, res) => {
   res.json(categories)
 })
+
+export const closeTicket = catchAsync(async (req, res) => {
+  const ticketId = req.params.id
+  const ticket = await Ticket.findById(ticketId)
+  ticket.status = false
+  await ticket.save()
+})

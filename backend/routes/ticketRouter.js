@@ -13,5 +13,6 @@ router.get('/tickets/:id', protect, ticketController.getTicket)
 
 router.post('/reply/:id', protect, replyController.createReply)
 router.get('/reply/:id', protect, replyController.getReplies)
+router.put('/reply/:id', protect, replyController.closeTicket)
 
 // router.delete('/ticket/:id', protect, ticketController.getTicket)
