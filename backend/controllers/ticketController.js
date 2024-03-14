@@ -39,4 +39,5 @@ export const closeTicket = catchAsync(async (req, res) => {
   const ticket = await Ticket.findById(ticketId)
   ticket.status = false
   await ticket.save()
+  res.status(200).json(ticket)
 })
