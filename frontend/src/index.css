@@ -7,6 +7,9 @@
   --main-color-light: #72b189;
   --main-color-lighter: #91c2a3;
   --red-error-color: #ff3333;
+  --soft-warning-color: #ff5c5c;
+  --softer-warning-color: #ff7070;
+  
   /*
   blue - #00A6FB
   amethyst - #9B5DE5
@@ -245,6 +248,26 @@ ul {
 .ticket-responder {
   color: var(--main-color);
   font-weight: bold;
+}
+
+.ticket-closed {
+  text-decoration: line-through;
+}
+
+.close-ticket-btn {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 24px;
+  border: 1px solid var(--soft-warning-color);
+  color: var(--white-color);
+  border-radius: 5px;
+  background-color: var(--soft-warning-color);
+  cursor:pointer;
+}
+
+.close-ticket-btn:hover {
+  background: var(--softer-warning-color);
+  border: 1px solid var(--softer-warning-color);
 }
 
 @media screen and (max-width: 700px) {

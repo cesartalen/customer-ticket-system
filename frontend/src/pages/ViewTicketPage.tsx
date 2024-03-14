@@ -70,15 +70,30 @@ export default function ViewTicketPage() {
         <div className='ticket-contents'>
           <div className='ticket-create-message'>
             <div className='submit-form'>
+              {ticket.status ? (
+                <button className='close-ticket-btn' >Close Ticket</button>
+              ): (
+                <>
+                </>
+              )}
               <form>
                 <div className='form-label'>
-                  <a className='form-title'>{ticket.name}</a>
-                  <a className='form-subtitle'>{ticket.category}</a>
-                </div>
-                <div className='form-content'>
-                  <input type='text' name='message' value={reply} placeholder='Enter your reply' onChange={handleChange}></input>
-                  <button onClick={handleSubmit}>Submit</button>
-                </div>
+                {ticket.status ? (
+                  <>
+                    <a className='form-title'>{ticket.name}</a>
+                    <a className='form-subtitle'>{ticket.category}</a>                  
+                    <div className='form-content'>
+                      <input type='text' name='message' value={reply} placeholder='Enter your reply' onChange={handleChange}></input>
+                      <button onClick={handleSubmit}>Submit</button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <a className='form-title ticket-closed'>{ticket.name}</a>
+                    <a className='form-subtitle ticket-closed'>{ticket.category}</a>                      
+                  </>
+                  )}
+                  </div>
               </form>
             </div>
           </div>
