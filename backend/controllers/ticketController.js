@@ -20,8 +20,14 @@ export const createTicket = catchAsync(async (req, res, next) => {
 })
 
 export const getTickets = catchAsync(async (req, res) => {
-  const userTickets = await Ticket.find({ user: req.user.id })
-  res.status(200).json(userTickets)
+  const thisUser = await User.find({ _id: req.user.id })
+  if (thisUser[0].isAdmin == true) {
+    const userTickets = await Ticket.find({})
+    res.status(200).json(userTickets)
+  } else {
+    const userTickets = await Ticket.find({ user: req.user.id })
+    res.status(200).json(userTickets)
+  }
 })
 
 export const getTicket = catchAsync(async (req, res) => {
