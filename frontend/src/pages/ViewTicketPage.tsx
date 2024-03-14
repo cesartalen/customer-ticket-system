@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { createReply, getReplies, getSpecificTicket } from '../services/apiTicket'
+import { closeTicket, createReply, getReplies, getSpecificTicket } from '../services/apiTicket'
 import { useUserState } from '../store/userState'
 import { useStore } from 'zustand'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
@@ -23,6 +23,15 @@ export default function ViewTicketPage() {
       await createReply(id, reply, userState).then(() => {
         setReply('')
         fetchReplies()
+      })
+    }
+  }
+
+  const handleCloseTicket = async (e: FormEvent) => {
+    e.preventDefault()
+    if(id) {
+      await closeTicket(id, userState).then(() => {
+        fetchTicket()
       })
     }
   }
@@ -71,7 +80,7 @@ export default function ViewTicketPage() {
           <div className='ticket-create-message'>
             <div className='submit-form'>
               {ticket.status ? (
-                <button className='close-ticket-btn' >Close Ticket</button>
+                <button className='close-ticket-btn' onClick={handleCloseTicket} >Close Ticket</button>
               ): (
                 <>
                 </>

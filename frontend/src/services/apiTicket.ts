@@ -58,19 +58,17 @@ export const getSpecificTicket = async (ticketId : string, userState: any) => {
   }
 }
 
-export const closeTicket = async (ticketId: string, userState: any) => {
+export const closeTicket = async (id: string, userState: any) => {
   try {
     const token = getToken(userState)
     if(!token == false) {
-      if(!token == false) {
-        const headers = {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
-        }
-  
-        const response = await axios.put(TICKET_CLOSE_TICKET(ticketId), { headers })
-        return response
+      const headers = {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
       }
+
+      const response = await axios.put(TICKET_CLOSE_TICKET(id), {}, { headers })
+      return response
     }
   } catch {
     return false
