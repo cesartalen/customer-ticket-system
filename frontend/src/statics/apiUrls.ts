@@ -14,3 +14,4 @@ export const TICKET_GET_SPECIFIC_TICKET = (id: string) => `${API_ROOT}/api/ticke
 // Ticket Replies
 export const TICKET_GET_REPLIES = (id: string) => `${API_ROOT}/api/tickets/reply/${id}`
 export const TICKET_CREATE_REPLIES = (id: string) => `${API_ROOT}/api/tickets/reply/${id}`
+export const TICKET_CLOSE_TICKET = (id: string) => `${API_ROOT}/api/tickets/reply/${id}`
