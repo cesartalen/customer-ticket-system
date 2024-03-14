@@ -173,7 +173,7 @@ ul {
   display: flex;
   text-align: center;
   flex-direction: column;
-  max-width: 50%;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -258,6 +258,42 @@ ul {
 .close-ticket-btn:hover {
   background: var(--softer-warning-color);
   border: 1px solid var(--softer-warning-color);
+}
+
+.faq-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.faq-contents {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 20px auto 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--second-black-color);
+  border-radius: 5px;
+  background-color: var(--second-white-color);
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-question {
+  font-size: 20px;
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.faq-answer {
+  font-size: 16px;
 }
 
 @media screen and (max-width: 700px) {
