@@ -10,7 +10,7 @@ router.get('/categories', ticketController.getCategories)
 
 router.get('/tickets', protect, ticketController.getTickets)
 router.get('/tickets/:id', protect, ticketController.getTicket)
-router.put('/reply/:id', protect, ticketController.closeTicket)
+router.put('/tickets/:id', protect, ticketController.closeTicket)
 
 router.post('/reply/:id', protect, replyController.createReply)
 router.get('/reply/:id', protect, replyController.getReplies)
