@@ -19,6 +19,8 @@ const replySchema = new mongoose.Schema(
     message: {
       type: String,
       required: [true, 'reply needs text content'],
+      maxlength: 1000,
+      minlength: 1,
     },
   },
   {
